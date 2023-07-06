@@ -1,0 +1,13 @@
+<div class="search-container">
+  <div class="line"></div>
+
+  <app-autocomplete
+    (userSelected)="selectUser($event)">
+  </app-autocomplete>
+</div>
+
+<app-user-profile *ngIf="selectedUser$ | async"
+  [user]="selectedUser$ | async"
+  [selectedUserFollowers]="selectedUserFollowers"
+  [isVerified]="isVerified">
+</app-user-profile>
