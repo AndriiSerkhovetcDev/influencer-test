@@ -1,0 +1,28 @@
+<div class="search">
+  <div class="search-field">
+    <span class="search-icon"></span>
+    <input
+      [formControl]="searchTerm"
+      (focus)="onInputFocus()"
+      (blur)="onInputBlur()"
+      placeholder="Search by username"
+      class="search-input"/>
+  </div>
+
+  <div class="autocomplete" *ngIf="isShowResult">
+    <div *ngFor="let user of users$ | async">
+      <div class="autocomplete-container" (click)="userSelectedHandler(user)">
+        <div class="autocomplete-item">
+          <img [src]="user.picture" class="autocomplete-item-info-avatar"/>
+          <div class="autocomplete-item-info">
+            <span class="autocomplete-item-info__user-name">@{{ user.username }}</span>
+            <span class="autocomplete-item-info__full-name">{{ user.fullname }}</span>
+          </div>
+        </div>
+        <div class="autocomplete-item-followers">
+          <span class="autocomplete-item-followers__amount">{{ user.followers | shortFormat }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

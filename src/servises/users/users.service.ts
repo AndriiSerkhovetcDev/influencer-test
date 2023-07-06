@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { catchError, combineLatest, forkJoin, map, Observable, of, tap} from 'rxjs';
+import {TUserDetails} from "../../types/user-details.type";
+import {TSearchedUser} from "../../types/search-user.type";
 
 @Injectable()
 export class UsersService {
@@ -9,7 +11,7 @@ export class UsersService {
         this.authKey = process.env.AUTH_KEY;
     }
 
-    public searchUsers(query: string): Observable<any> {
+    public searchUsers(query: string): Observable<TSearchedUser[]> {
         return this.httpService.get(`https://imai.co/api/dict/users/`, {
             headers: {
                 authkey: this.authKey
@@ -29,7 +31,7 @@ export class UsersService {
         );
     }
 
-    public getUserFeeds(username: string): Observable<any> {
+    public getUserFeeds(username: string): Observable<TUserDetails['feeds']> {
         return this.httpService.get(`https://imai.co/api/raw/ig/user/feed/`, {
             headers: {
                 authkey: this.authKey
@@ -47,7 +49,7 @@ export class UsersService {
         );
     }
 
-    public getUserInfo(username: string): Observable<any> {
+    public getUserInfo(username: string): Observable<TUserDetails['user']> {
         return this.httpService.get(`https://imai.co/api/exports/contacts/`, {
             headers: {
                 authkey: this.authKey
@@ -66,12 +68,12 @@ export class UsersService {
         );
     }
 
-    public getUserAndUserFeeds(username: string): Observable<any> {
-        return combineLatest([
+    public getUserAndUserFeeds(username: string): Observable<TUserDetails> {
+        return forkJoin([
             this.getUserFeeds(username),
             this.getUserInfo(username)
         ]).pipe(
-            map(([userFeedsData, userInfo]) => {
+            map(([userFeedsData, userInfo]): { feeds: TUserDetails['feeds'], user: TUserDetails['user']} => {
                 return { feeds: userFeedsData , user: userInfo.user_profile };
             })
         );

@@ -1,0 +1,68 @@
+<ng-container *ngIf="userInfo">
+  <header>
+    <div class="container">
+      <div class="profile">
+        <div class="profile-image">
+          <img [src]="userInfo.picture" alt="profile-avatar" class="img">
+        </div>
+
+        <div class="profile-user-settings">
+          <h1 class="profile-user-name">{{ userInfo.username }}</h1>
+          <div *ngIf="isVerified">
+            <img width="18"
+                 height="18"
+                 src="https://img.icons8.com/color/48/instagram-verification-badge.png"
+                 alt="instagram-verification-badge"/>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div><span class="profile-stat-count">{{ selectedUserFollowers | shortFormat }}</span> followers</div>
+        </div>
+
+        <div class="profile-bio">
+          <span class="profile-real-name">{{userInfo.fullname}}</span>
+          <div *ngFor="let contact of userInfo?.contacts">
+            <div class="contact">
+              <span class="contact-type">{{contact.type}} </span>
+              <a [href]="contact.formatted_value" class="contact-link">{{ contact.formatted_value }}</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- End of profile section -->
+
+    </div>
+    <!-- End of container -->
+
+  </header>
+</ng-container>
+
+<main>
+
+  <div class="container">
+
+    <div class="gallery">
+      <div *ngFor="let feed of userFeeds">
+        <ng-container *ngIf="feed?.display_url as image">
+          <div class="gallery-item">
+            <img [src]="image" class="gallery-image" alt="">
+            <div class="gallery-item-info">
+              <ul>
+                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart"
+                                                                                             aria-hidden="true"></i> 56
+                </li>
+                <li class="gallery-item-comments">
+                  <span class="visually-hidden">Comments:</span><i class="fas fa-comment"
+                                                                   aria-hidden="true"></i>
+                  2
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</main>

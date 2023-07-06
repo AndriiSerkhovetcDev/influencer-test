@@ -36,6 +36,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -63,16 +69,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "proxyConfig": "src/proxy.conf.json"
-          },
           "configurations": {
             "production": {
               "browserTarget": "front-angular:build:production"
             },
             "development": {
-              "browserTarget": "front-angular:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "front-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
