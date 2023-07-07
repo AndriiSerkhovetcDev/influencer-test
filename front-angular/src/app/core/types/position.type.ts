@@ -1,4 +1,5 @@
-import { TUser } from '@core/types/user.type';
+import {TUser} from "./user.type";
+
 
 export type TPosition = {
   user: TUser;

@@ -1,8 +1,9 @@
-import { TCandidate } from '@core/types/candidate.type';
-import { TClipsMetadata } from '@core/types/clips-meta-data.type';
-import { TCoauthorProducer } from '@core/types/coauthor-producer.type';
-import { TPosition } from '@core/types/position.type';
-import { TUser } from '@core/types/user.type';
+import {TCoauthorProducer} from "./coauthor-producer.type";
+import {TUser} from "./user.type";
+import {TPosition} from "./position.type";
+import {TClipsMetadata} from "./clips-meta-data.type";
+import {TCandidate} from "./candidate.type";
+
 
 export type TFeedItem = {
   pk: number;

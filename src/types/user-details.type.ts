@@ -5,4 +5,5 @@ import { TProfileUserContact } from "./profile-user-contact.type";
 export type TUserDetails = {
   feeds: TPagedResponse<TFeedItem>;
   user: TProfileUserContact;
+  user_profile?: TProfileUserContact;
 };

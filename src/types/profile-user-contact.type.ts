@@ -1,6 +1,5 @@
 import { TContact } from "./contact.type";
 
-
 export type TProfileUserContact = {
   user_id: string;
   username: string;
@@ -8,4 +7,4 @@ export type TProfileUserContact = {
   picture: string;
   fullname: string;
   contacts: TContact[];
-}
+};

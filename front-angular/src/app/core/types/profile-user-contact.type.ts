@@ -1,10 +1,8 @@
-import { TContact } from '@core/types/contact.type';
+import {TContact} from "./contact.type";
+import { TSearchedUser } from "./search-user.type";
 
-export type TProfileUserContact = {
-  user_id: string;
-  username: string;
+
+export type TProfileUserContact = TSearchedUser & {
   url: string;
-  picture: string;
-  fullname: string;
   contacts: TContact[];
 }

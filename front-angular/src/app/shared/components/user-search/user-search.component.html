@@ -2,9 +2,11 @@
   <div class="line"></div>
 
   <app-autocomplete
-    (userSelected)="user.set($event)">
+    (userSelected)="selectUser($event)">
   </app-autocomplete>
 </div>
+
+<app-loader class="loader" [isLoading]="!!(isLoading$ | async)"></app-loader>
 
 <app-user-profile *ngIf="selectedUser() | async as selectedUser"
                   [user]="selectedUser"

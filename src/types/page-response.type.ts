@@ -3,4 +3,4 @@ export type TPagedResponse<T> = {
   more_available: boolean;
   end_cursor: string;
   status: string;
-}
+};

@@ -1,1 +1,1 @@
-export type TContact = Record<'type' | 'value' | 'formatted_value', string>;
+export type TContact = Record<"type" | "value" | "formatted_value", string>;

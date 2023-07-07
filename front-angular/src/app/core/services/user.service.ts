@@ -1,9 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { TSearchedUser } from '@core/types/search-user.type';
-import { TUserDetails } from '@core/types/user-details.type';
-import { environment } from '@environments/environment';
 import { map, Observable } from 'rxjs';
+import {environment} from "../../../environments/environment";
+import {TUserDetails} from "../types/user-details.type";
+import {TSearchedUser} from "../types/search-user.type";
+
 
 @Injectable({
   providedIn: 'root'

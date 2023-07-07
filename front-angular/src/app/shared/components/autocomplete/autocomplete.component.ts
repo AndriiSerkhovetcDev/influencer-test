@@ -1,10 +1,11 @@
-import { ShortFormatPipe } from '@shared/pipes/short-format.pipe';
-import { UserService } from '@core/services/user.service';
-import { TSearchedUser } from '@core/types/search-user.type';
+
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, inject, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Observable, of, switchMap } from 'rxjs';
+import {ShortFormatPipe} from "../../pipes/short-format.pipe";
+import {TSearchedUser} from "../../../core/types/search-user.type";
+import {UserService} from "../../../core/services/user.service";
 
 @Component({
   selector: 'app-autocomplete',
@@ -23,11 +24,14 @@ export class AutocompleteComponent {
   private readonly _userService: UserService = inject(UserService);
   private readonly _elementRef: ElementRef = inject(ElementRef);
 
-  protected readonly users$: Observable<TSearchedUser[]> = this.searchTerm.valueChanges.pipe(
-    debounceTime(500),
-    distinctUntilChanged(),
-    switchMap((term: string) => term ? this._userService.searchUsers(term) : of([]))
-  );
+  protected readonly users$: Observable<TSearchedUser[]> =
+    this.searchTerm.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((term: string) =>
+        term ? this._userService.searchUsers(term) : of([]),
+      ),
+    );
 
   public userSelectedHandler(user: TSearchedUser): void {
     this.isShowResult = false;

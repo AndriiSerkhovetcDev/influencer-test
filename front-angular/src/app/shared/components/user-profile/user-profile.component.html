@@ -3,7 +3,7 @@
     <div class="container">
       <div class="profile">
         <div class="profile-image">
-          <img [src]="userInfo.picture" alt="profile-avatar" class="img">
+          <img [src]="userInfo.picture | fetchImage | async" alt="profile-avatar" class="img">
         </div>
 
         <div class="profile-user-settings">
@@ -40,23 +40,25 @@
 </ng-container>
 
 <main>
-
   <div class="container">
-
     <div class="gallery">
       <div *ngFor="let feed of userFeeds">
-        <ng-container *ngIf="feed?.display_url as image">
+        <ng-container *ngIf="feed?.display_url as image ">
           <div class="gallery-item">
-            <img [src]="image" class="gallery-image" alt="">
+            <span *ngIf="feed && (feed.carousel_media || feed.video_url)" class="gallery-item__media-icon">
+              <fa-icon [icon]="feed.carousel_media ? faImages : faClapperboard">
+              </fa-icon>
+            </span>
+            <img crossorigin="anonymous" [src]="image | fetchImage | async" class="gallery-image" alt=""/>
             <div class="gallery-item-info">
               <ul>
-                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart"
-                                                                                             aria-hidden="true"></i> 56
+                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span>
+                  <fa-icon [icon]="faHeart"></fa-icon> {{ feed.like_count }}
                 </li>
                 <li class="gallery-item-comments">
-                  <span class="visually-hidden">Comments:</span><i class="fas fa-comment"
-                                                                   aria-hidden="true"></i>
-                  2
+                  <span class="visually-hidden">Comments:</span>
+                  <fa-icon [icon]="faComment" aria-hidden="true"></fa-icon>
+                  {{ feed.comment_count }}
                 </li>
               </ul>
             </div>

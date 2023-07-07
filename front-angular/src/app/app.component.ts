@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { UserSearchComponent } from '@shared/components/user-search/user-search.component';
+import { UserSearchComponent } from "./shared/components/user-search/user-search.component";
+
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { UserSearchComponent } from '@shared/components/user-search/user-search.
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [UserSearchComponent]
+  imports: [UserSearchComponent],
 })
 export class AppComponent {
 }

@@ -40,7 +40,6 @@ type TImageVersions2 = {
   candidates: TCandidate[];
 };
 
-
 type TCaption = {
   text: string;
 };
