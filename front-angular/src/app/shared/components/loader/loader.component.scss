@@ -1,0 +1,56 @@
+:host {
+  --background-color: #e0dddd;
+  --accent-color: rgba(28, 159, 86, 0.5);
+
+  @keyframes rotateLoader {
+    0%, 10% {
+      transform: rotate(-153deg);
+      background: var(--background-color);
+    }
+
+    50% {
+      background: var(--accent-color);
+    }
+
+    90%, 100% {
+      transform: rotate(0deg);
+      background: var(--background-color);
+    }
+  }
+
+  @keyframes ballMoveX {
+    0%, 10% {
+      transform: translateX(0);
+    }
+    90%, 100% {
+      transform: translateX(32px);
+    }
+  }
+
+  .loader {
+    position: relative;
+    width: 100px;
+    height: 16px;
+    margin: 0 auto;
+
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--background-color);
+      box-shadow: 32px 0 var(--background-color);
+      left: 0;
+      top: 0;
+      animation: ballMoveX .7s linear infinite;
+    }
+
+    &:after {
+      box-shadow: none;
+      transform-origin: 40px 0;
+      transform: rotate(-153deg);
+      animation: rotateLoader .7s linear infinite;
+    }
+  }
+}
